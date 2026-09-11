@@ -8,31 +8,42 @@ let active='All';
 
 const media={
   'Season Opening Ride':['../assets/media/cycling-new-year-group.webp','UNITED archive'],
-  'Jebel Hafeet Weekend':['../assets/media/cycling-mountains-group.webp','UNITED archive'],
-  'Movie Night in the Desert':['../assets/media/liwa-stars.webp','UNITED archive'],
-  'Running Technique Session':['../assets/media/running-kite-beach-group.webp','UNITED archive'],
+  'Jebel Hafeet Weekend':['../assets/media/events/jebel-hafeet.jpg','UNITED at Jebel Hafeet'],
+  'Movie Night in the Desert':['../assets/media/events/desert-cinema.jpg','UNITED desert cinema'],
+  'Running Technique Session':['../assets/media/events/running-masterclass.jpg','UNITED running masterclass'],
   'Coffee Ride — New City Routes':['../assets/media/cycling-friends.webp','UNITED archive'],
-  'Open Water Training':['../assets/IMG_3852.jpg','UNITED archive'],
-  'Club Dinner':['../assets/media/community-dinner.webp','UNITED archive'],
-  'Karting Night':['../assets/media/cycling-friends.webp','UNITED archive'],
-  'Musandam Weekend':['../assets/media/cycling-mountains-two-riders.webp','UNITED archive'],
-  'OCEANMAN Prep — Open Water Training':['../assets/IMG_3852.jpg','UNITED archive'],
-  'T100 Transition Clinic':['../assets/media/t100-team.webp','UNITED archive'],
-  'T100 Pasta Party':['../assets/media/community-dinner.webp','UNITED archive'],
-  'Dubai T100':['../assets/media/t100-team.webp','UNITED at T100'],
-  'UNITED Yacht Party':['../assets/media/community-dinner.webp','UNITED archive'],
-  'Desert Quad Bikes':['../assets/media/liwa-landscape-02.webp','UNITED archive'],
-  'Fujairah Family Camp':['../assets/media/liwa-landscape-01.webp','UNITED archive'],
-  'Jebel Jais Weekend':['../assets/media/cycling-mountains-rear.webp','UNITED archive'],
-  'UNITED End of Year Dinner':['../assets/media/community-dinner.webp','UNITED archive'],
-  'Christmas Ride + Dinner':['../assets/media/cycling-new-year-group.webp','UNITED archive'],
+  'Open Water Training':['../assets/media/events/open-water.jpg','UNITED open-water training'],
+  'Club Dinner':['../assets/media/events/community-dinner.jpg','UNITED community dinner'],
+  'Karting Night':['../assets/media/events/karting.jpg','UNITED karting'],
+  'Musandam Weekend':['../assets/media/events/musandam.jpg','UNITED in Musandam'],
+  'Hatta Weekend':['../assets/media/events/hatta.jpg','UNITED in Hatta'],
+  'Liwa Weekend':['../assets/media/events/liwa.jpg','UNITED in Liwa'],
+  'Kalba Weekend':['../assets/media/events/kalba.jpg','UNITED in Kalba'],
+  'OCEANMAN Prep — Open Water Training':['../assets/media/events/open-water.jpg','UNITED open-water training'],
+  'T100 Transition Clinic':['../assets/media/events/transition-training.jpg','UNITED transition training'],
+  'T100 Pasta Party':['../assets/media/events/pasta-party.jpg','UNITED T100 pasta party'],
+  'Dubai T100':['../assets/media/events/t100.jpg','UNITED at Dubai T100'],
+  'UNITED Yacht Party':['../assets/media/events/yachting.jpg','UNITED yacht party'],
+  'T100 Boat Day':['../assets/media/events/t100-boat.jpg','UNITED T100 boat day'],
+  'Desert Quad Bikes':['../assets/media/events/liwa.jpg','UNITED in Liwa'],
+  'Fujairah Family Camp':['../assets/media/events/kalba.jpg','UNITED east coast archive'],
+  'Jebel Jais Weekend':['../assets/media/events/jebel-jais.jpg','UNITED at Jebel Jais'],
+  'UNITED End of Year Dinner':['../assets/media/events/new-year-dinner.jpg','UNITED end-of-year dinner'],
+  'Christmas Ride + Dinner':['../assets/media/events/new-year-dinner.jpg','UNITED festive dinner'],
   'Challenge Sir Bani Yas':['../assets/IMG_8744.jpg','UNITED athlete archive'],
   'Spinneys Dubai 92 Cycle Challenge':['../assets/media/cycling-friends.webp','UNITED archive'],
   'UNITED South Africa Cycling Camp':['../assets/media/cycling-mountains-group.webp','UNITED archive'],
   'Cape Town Cycle Tour':['../assets/media/cycling-mountains-two-riders.webp','UNITED archive'],
-  'UNITED Maldives Swim Camp + OCEANMAN':['../assets/IMG_3852.jpg','UNITED archive']
+  'UNITED Maldives Swim Camp + OCEANMAN':['../assets/media/events/open-water.jpg','UNITED open-water archive']
 };
-const categoryMedia={Triathlon:['../assets/IMG_8744.jpg','UNITED archive'],Cycling:['../assets/media/cycling-friends.webp','UNITED archive'],Running:['../assets/media/running-kite-beach-group.webp','UNITED archive'],Swimming:['../assets/IMG_3852.jpg','UNITED archive'],Camp:['../assets/media/liwa-landscape-02.webp','UNITED archive'],Community:['../assets/media/community-dinner.webp','UNITED archive']};
+const categoryMedia={
+  Triathlon:['../assets/media/events/t100.jpg','UNITED archive'],
+  Cycling:['../assets/media/cycling-friends.webp','UNITED archive'],
+  Running:['../assets/media/events/running-masterclass.jpg','UNITED archive'],
+  Swimming:['../assets/media/events/open-water.jpg','UNITED archive'],
+  Camp:['../assets/media/events/hatta.jpg','UNITED archive'],
+  Community:['../assets/media/events/community-dinner.jpg','UNITED archive']
+};
 const imageFor=e=>media[e.title]||categoryMedia[e.cats[0]]||['../assets/media/t100-team.webp','UNITED archive'];
 const fmt=d=>new Date(d+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'}).toUpperCase();
 const monthKey=e=>e.date?e.date.slice(0,7):e.month;
