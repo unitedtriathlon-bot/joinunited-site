@@ -1,1 +1,117 @@
-body{background:linear-gradient(180deg,#fff 0%,#fff9ef 38%,#f3d39d 100%)}.coach-nav{min-height:86px;display:flex;align-items:center;gap:28px}.coach-nav .brand img{width:190px}.coach-nav-links{margin-left:auto;display:flex;gap:24px;font-size:13px;font-weight:900;text-transform:uppercase}.coach-hero{padding:76px 0 46px}.coach-hero h1{font-size:clamp(58px,10vw,126px);line-height:.82;text-transform:uppercase;letter-spacing:-.055em;margin:0 0 24px;max-width:980px}.coach-hero>p:last-child{font-size:21px;line-height:1.45;max-width:720px}.coach-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;padding-bottom:84px}.coach-card{background:#fff;border:1px solid rgba(17,17,17,.1);border-radius:18px;overflow:hidden;color:#111;text-decoration:none;box-shadow:0 18px 46px rgba(111,72,19,.1);transition:transform .2s ease}.coach-card:hover{transform:translateY(-4px)}.coach-card-photo{height:520px;background:#eee;overflow:hidden}.coach-card-photo img{width:100%;height:100%;object-fit:cover}.coach-card-copy{padding:28px}.coach-card-copy span{font-size:12px;font-weight:950;text-transform:uppercase;color:#d93491}.coach-card-copy h2{font-size:clamp(34px,4vw,54px);text-transform:uppercase;letter-spacing:-.04em;line-height:.92;margin:8px 0 12px}.coach-card-copy p{font-weight:850;color:#164194;min-height:44px}.coach-card-copy b{display:block;margin-top:22px;text-transform:uppercase;font-size:12px}.coach-cta{background:linear-gradient(90deg,#fff7e9,#efb762);border-top:1px solid rgba(17,17,17,.1)}.coach-cta-inner{padding-top:54px;padding-bottom:54px;display:flex;align-items:center;justify-content:space-between;gap:28px}.coach-cta h2{font-size:clamp(42px,5vw,72px);text-transform:uppercase;line-height:.9;margin:0}.profile-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;padding:52px 0}.profile-hero-photo{min-height:650px;border-radius:18px;overflow:hidden;background:#eee}.profile-hero-photo img{width:100%;height:100%;object-fit:cover}.profile-copy{display:flex;flex-direction:column;justify-content:center}.profile-copy h1{font-size:clamp(58px,7vw,100px);line-height:.82;text-transform:uppercase;letter-spacing:-.055em;margin:10px 0 18px}.profile-tags{font-weight:900;color:#164194;font-size:18px}.profile-lead{font-size:21px;line-height:1.55}.profile-facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:28px 0}.profile-facts div{background:#fff7ea;border:1px solid rgba(17,17,17,.08);padding:18px;border-radius:10px}.profile-facts strong,.profile-facts span{display:block}.profile-facts strong{text-transform:uppercase;font-size:11px;margin-bottom:7px}.profile-facts span{line-height:1.45}.profile-story{max-width:900px;padding:28px 0 70px}.profile-story h2{font-size:clamp(38px,5vw,64px);text-transform:uppercase;margin-bottom:18px}.profile-story p{font-size:19px;line-height:1.65}.gallery{display:grid;grid-template-columns:2fr 1fr;gap:14px;padding-bottom:70px}.gallery img{width:100%;height:100%;max-height:680px;object-fit:cover;border-radius:14px}@media(max-width:800px){.coach-nav-links{display:none}.coach-nav .btn{margin-left:auto}.coach-grid,.profile-hero{grid-template-columns:1fr}.coach-card-photo{height:460px}.profile-hero-photo{min-height:500px}.profile-facts{grid-template-columns:1fr}.coach-cta-inner{flex-direction:column;align-items:flex-start}}@media(max-width:520px){.coach-nav{min-height:72px}.coach-nav .brand img{width:140px}.coach-nav .btn{padding:0 12px;font-size:10px}.coach-hero{padding-top:48px}.coach-hero h1{font-size:52px}.coach-grid{grid-template-columns:1fr}.coach-card-photo{height:430px}.profile-hero{padding-top:30px}.profile-hero-photo{min-height:430px}.profile-copy h1{font-size:52px}.gallery{grid-template-columns:1fr}}
+/* Coaches pages only. Shared site and Events styles remain unchanged. */
+body{background:#fffaf2;color:#151515}
+p{line-height:1.6}
+a:focus-visible{outline:3px solid #164194;outline-offset:5px}
+.skip-link{position:absolute;left:12px;top:-100px;background:white;padding:14px;z-index:10}
+.skip-link:focus{top:10px}
+.coach-nav{min-height:94px;display:flex;align-items:center;gap:30px;border-bottom:1px solid #ddd5ca}
+.coach-nav .brand img{width:175px;height:auto}
+.coach-nav nav{margin-left:auto;display:flex;gap:24px;font-size:13px;font-weight:800}
+.coach-nav nav a{padding:14px 0}
+.coach-nav .btn{font-size:11px}
+.eyebrow,.coach-role{text-transform:uppercase;font-size:12px;letter-spacing:.075em;font-weight:800;color:#973163}
+.coach-hero{padding:72px 0 48px;display:grid;grid-template-columns:1.45fr 1fr;align-items:end;gap:40px}
+.coach-hero h1{font-size:clamp(48px,6.3vw,86px);line-height:.98;letter-spacing:-.065em;text-transform:uppercase;margin:16px 0 0}
+.coach-hero>p{font-size:18px;max-width:380px;margin:0 0 4px}
+.coach-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding-bottom:80px}
+.coach-card{background:#fff;border:1px solid #e2ddd5;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.coach-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px #25201b14}
+.coach-card-photo{aspect-ratio:4/4.5;background:#e9e4db;overflow:hidden}
+.coach-card-photo img{width:100%;height:100%;object-fit:cover;object-position:center 28%}
+.coach-card:first-child .coach-card-photo img{object-position:51% 30%}
+.coach-card-copy{padding:24px;display:flex;flex-direction:column;flex:1}
+.coach-role{margin:0 0 10px}
+.coach-card h2{font-size:31px;letter-spacing:-.045em;line-height:1.06;margin:0 0 16px}
+.profile-tags{color:#164194;font-size:14px;font-weight:700;line-height:1.6;margin:0 0 14px}
+.card-intro{font-size:15px;color:#504c48;margin:0 0 24px}
+.profile-link{border-top:1px solid #eee;padding-top:17px;display:flex;justify-content:space-between;margin-top:auto;font-size:13px;font-weight:800}
+.availability{align-self:flex-start;display:inline-block;background:#164194;color:white;font-size:10px;font-weight:800;letter-spacing:.08em;padding:7px 11px;border-radius:4px}
+.location{font-size:13px;font-weight:700;margin:10px 0 14px}
+.portrait-placeholder{width:100%;height:100%;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#e6e7e4;color:#45514e;gap:24px}
+.portrait-placeholder>span{font-size:clamp(80px,10vw,150px);font-weight:800;letter-spacing:-.07em}
+.portrait-placeholder small{font-size:10px;letter-spacing:.15em}
+.breadcrumb{padding-top:28px;font-size:13px;font-weight:700}
+.breadcrumb a{display:inline-block;padding:12px 0}
+.profile-hero{display:grid;grid-template-columns:1fr 1fr;gap:64px;padding:20px 0 64px;align-items:center}
+.profile-hero-photo{aspect-ratio:1/1.12;overflow:hidden;border-radius:14px;background:#e6e7e4}
+.profile-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
+.profile-copy h1{font-size:clamp(48px,5.6vw,78px);letter-spacing:-.06em;line-height:1.01;margin:16px 0 22px}
+.profile-copy .profile-tags{font-size:16px}
+.profile-copy .availability{margin-bottom:0}
+.profile-lead{font-size:20px;line-height:1.55}
+.price{font-size:16px;font-weight:800;margin:26px 0 16px}
+.profile-copy .btn{border-radius:5px}
+.contact-note{font-size:12px;color:#625c55;margin:12px 0 0}
+.profile-body{display:grid;grid-template-columns:1.6fr 1fr;gap:80px;border-top:1px solid #ded5ca;padding-top:54px;padding-bottom:64px}
+.profile-story h2,.race-story h2{font-size:clamp(32px,3.4vw,48px);line-height:1.07;letter-spacing:-.045em;margin:14px 0 26px}
+.profile-story h3{font-size:22px;margin:32px 0 12px}
+.profile-story p,.race-story p{font-size:17px;color:#45413c}
+.achievements{padding-left:20px;line-height:1.6;font-size:15px}
+.achievements li{padding:6px 0}
+.profile-aside{display:flex;flex-direction:column;gap:20px}
+.profile-aside section{background:white;border:1px solid #e2ddd5;padding:26px;border-radius:10px}
+.profile-aside h3{font-size:20px;line-height:1.35;margin:12px 0}
+.profile-aside p{font-size:15px}
+.profile-aside ul{padding-left:20px;line-height:1.6;font-size:15px;margin-bottom:0}
+.profile-aside li{padding:6px 0}
+.profile-aside .service-panel{background:#f6e0ed;border:0}
+.text-link{font-weight:800;display:inline-block;padding:12px 0;text-decoration:underline;text-underline-offset:5px}
+.race-story{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding-bottom:70px}
+.race-story figure{margin:0}
+.race-story img{width:100%;height:auto;border-radius:12px}
+.race-story figcaption{font-size:12px;color:#625c55;margin-top:12px}
+.coach-cta{background:#172d52;color:white}
+.coach-cta-inner{padding:48px 0;display:flex;justify-content:space-between;align-items:center;gap:32px}
+.coach-cta .eyebrow{color:#ffa4dd}
+.coach-cta h2{font-size:clamp(32px,4vw,54px);letter-spacing:-.04em;line-height:1.06;margin:14px 0}
+.coach-cta p{margin-bottom:0}
+.coach-cta .btn{flex-shrink:0}
+.coach-footer{display:flex;gap:28px;flex-wrap:wrap;align-items:center;padding:28px 0;font-size:12px;font-weight:700}
+.coach-footer a{padding:12px 0}
+.coach-footer span{margin-left:auto;color:#625c55;font-weight:400}
+
+@media(min-width:1000px){.coach-card:first-child{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr}
+.coach-card:first-child .coach-card-photo{aspect-ratio:auto;min-height:440px}
+.coach-card:first-child .coach-card-copy{justify-content:center;padding:32px}
+.coach-card:first-child h2{font-size:48px}
+.coach-card:first-child .profile-link{margin-top:24px}
+.coach-card:first-child .card-intro{font-size:18px}
+}
+
+@media(max-width:999px){.coach-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.profile-hero{gap:30px}
+.profile-body{gap:32px}
+.coach-nav{gap:20px}
+.coach-nav .nav-contact{display:none}
+}
+
+@media(max-width:700px){.coach-nav{min-height:78px;gap:14px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+.coach-nav .brand img{width:128px}
+.coach-nav nav{gap:16px;font-size:12px}
+.coach-hero{padding:42px 0 32px;display:block}
+.coach-hero h1{font-size:48px}
+.coach-hero>p{font-size:16px;margin-top:24px}
+.coach-grid{grid-template-columns:1fr;gap:24px;padding-bottom:44px}
+.coach-card-photo{aspect-ratio:1/1}
+.coach-card-copy{padding:24px}
+.coach-card h2{font-size:34px}
+.profile-hero,.profile-body,.race-story{grid-template-columns:1fr;gap:28px}
+.profile-hero{padding-bottom:36px}
+.profile-hero-photo{aspect-ratio:1/1}
+.profile-copy h1{font-size:52px}
+.profile-lead{font-size:18px}
+.profile-copy .btn{width:100%}
+.profile-body{padding-top:32px;padding-bottom:40px}
+.profile-story h3{margin-top:26px}
+.race-story{padding-bottom:40px}
+.coach-cta-inner{align-items:flex-start;flex-direction:column;padding:36px 0;gap:24px}
+.coach-cta .btn{width:100%}
+.coach-footer{gap:16px}
+.coach-footer span{width:100%;margin:0}
+.breadcrumb{padding-top:16px}
+}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+.coach-card{transition:none}
+.coach-card:hover{transform:none}
+}
