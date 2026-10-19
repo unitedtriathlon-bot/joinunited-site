@@ -1,6 +1,6 @@
 window.stonehengeFormConfig = Object.freeze({
   endpoint: 'https://formsubmit.co/ajax/bolshakov@joinunited.ae',
   cc: 'support@joinunited.ae',
-  // Enable only after Workspace mail routing and FormSubmit activation are verified.
-  enabled: false,
+  // FormSubmit recipient activation and inbox delivery still require live verification.
+  enabled: true,
 });
