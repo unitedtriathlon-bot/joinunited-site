@@ -72,21 +72,26 @@
     close.disabled = true;
     submit.textContent = 'Sending…';
     form.setAttribute('aria-busy', 'true');
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 25000);
     try {
-      const data = {...Object.fromEntries(new FormData(form).entries()), _cc: config.cc};
-      const response = await fetch(config.endpoint, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-        body: JSON.stringify(data),
-        signal: controller.signal,
+      const requestId = (crypto.randomUUID ? crypto.randomUUID() : Date.now() + '_' + Math.random().toString(36).slice(2)).replace(/[^a-zA-Z0-9_-]/g, '');
+      const data = {...Object.fromEntries(new FormData(form).entries()), request_id: requestId, website: ''};
+      await fetch(config.endpoint, {method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)});
+      const checkStatus = () => new Promise((resolve,reject) => {
+        const callback = 'stonehengeStatus_' + Math.random().toString(36).slice(2);
+        const script = document.createElement('script');
+        const cleanup = () => {clearTimeout(timer);delete window[callback];script.remove();};
+        const timer = setTimeout(() => {cleanup();reject(Error('Timeout'));},6500);
+        window[callback] = result => {cleanup();resolve(result && result.ok === true && result.id === requestId);};
+        script.onerror = () => {cleanup();reject(Error('Status unavailable'));};
+        script.src = config.endpoint + '?id=' + encodeURIComponent(requestId) + '&callback=' + callback + '&t=' + Date.now();
+        document.head.appendChild(script);
       });
-      if (!response.ok) throw new Error('Service rejected request');
-      const result = await response.json();
-      if (!result || ![true, 'true'].includes(result.success) || /activat|confirm.*email|verify.*email/i.test(result.message || '')) {
-        throw new Error('Service did not accept request');
+      let confirmed = false;
+      for (let attempt = 0; attempt < 5 && !confirmed; attempt++) {
+        await new Promise(resolve => setTimeout(resolve, attempt ? 1800 : 700));
+        try {confirmed = await checkStatus();} catch (_) {}
       }
+      if (!confirmed) throw Error('Delivery not confirmed');
       formView.style.display = 'none';
       successView.style.display = 'block';
       successView.querySelector('h2').focus();
@@ -96,7 +101,6 @@
         ? 'We could not confirm your request before the connection timed out. Please try again or speak with Ivan in the gym.'
         : 'We could not confirm your request. Please check your connection and try again, or speak with Ivan in the gym.');
     } finally {
-      clearTimeout(timeout);
       sending = false;
       submit.disabled = false;
       close.disabled = false;
