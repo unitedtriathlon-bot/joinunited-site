@@ -11,7 +11,7 @@
   let idleTimer;
   const copy = {
     consultation: ['Free consultation', 'Book your free consultation', '15 minutes with Ivan in the Stonehenge 1 gym. We will identify your weak points and give you clear recommendations on nutrition, routine, training frequency and exercises.'],
-    group: ['Free resident workouts', 'Join the free resident workouts', 'Free group sessions for Stonehenge 1 residents: Tuesday 19:00–20:00 and Sunday 10:00–11:00.'],
+    group: ['Free resident workouts', 'Join free workouts with your neighbours', 'Free group sessions for Stonehenge 1 residents: Tuesday 20:00–21:00 and Sunday 11:00–12:00.'],
     pt: ['Personal training — 300 AED', 'Personal training with Ivan', '1-on-1 coaching in Stonehenge 1. One session costs 300 AED. Tell us your goal and Ivan will contact you.'],
   };
   function clearError() {
