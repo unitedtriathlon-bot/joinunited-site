@@ -8,6 +8,7 @@
   const close = document.getElementById('closeDialog');
   const submit = form.querySelector('.submit');
   let sending = false;
+  let pendingRequest;
   let idleTimer;
   const copy = {
     consultation: ['Free consultation', 'Book your free consultation', '15 minutes with Ivan in the Stonehenge 1 gym. We will identify your weak points and give you clear recommendations on nutrition, routine, training frequency and exercises.'],
@@ -63,7 +64,7 @@
     event.preventDefault();
     if (sending) return;
     clearError();
-    if (!config.enabled) {
+    if (!config || !config.enabled || !config.endpoint) {
       showError('Online requests are temporarily unavailable. Your request has not been sent. Please speak with Ivan in the Stonehenge 1 gym.');
       return;
     }
@@ -73,9 +74,14 @@
     submit.textContent = 'Sending…';
     form.setAttribute('aria-busy', 'true');
     try {
-      const requestId = (crypto.randomUUID ? crypto.randomUUID() : Date.now() + '_' + Math.random().toString(36).slice(2)).replace(/[^a-zA-Z0-9_-]/g, '');
-      const data = {...Object.fromEntries(new FormData(form).entries()), request_id: requestId, website: ''};
-      await fetch(config.endpoint, {method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)});
+      const fields = Object.fromEntries(new FormData(form).entries());
+      const fingerprint = JSON.stringify(fields);
+      const retrying = pendingRequest && pendingRequest.fingerprint === fingerprint;
+      if (!retrying) {
+        pendingRequest = {fingerprint, id: (crypto.randomUUID ? crypto.randomUUID() : Date.now() + '_' + Math.random().toString(36).slice(2)).replace(/[^a-zA-Z0-9_-]/g, '')};
+      }
+      const requestId = pendingRequest.id;
+      const data = {...fields, request_id: requestId, website: ''};
       const checkStatus = () => new Promise((resolve,reject) => {
         const callback = 'stonehengeStatus_' + Math.random().toString(36).slice(2);
         const script = document.createElement('script');
@@ -86,20 +92,34 @@
         script.src = config.endpoint + '?id=' + encodeURIComponent(requestId) + '&callback=' + callback + '&t=' + Date.now();
         document.head.appendChild(script);
       });
-      let confirmed = false;
+      // On a retry, check the previous result before sending the same ID again.
+      // If status is unavailable, do not risk another email.
+      let confirmed = retrying ? await checkStatus() : false;
+      if (!confirmed) {
+        const controller = new AbortController();
+        const postTimer = setTimeout(() => controller.abort(), 15000);
+        try {
+          await fetch(config.endpoint, {method:'POST',mode:'no-cors',
+            headers:{'Content-Type':'text/plain'},body:JSON.stringify(data),signal:controller.signal});
+        } catch (_) {
+          // A failed/aborted response does not prove that the server did not send.
+          // Continue to the status check before reporting the outcome.
+        } finally { clearTimeout(postTimer); }
+      }
       for (let attempt = 0; attempt < 5 && !confirmed; attempt++) {
         await new Promise(resolve => setTimeout(resolve, attempt ? 1800 : 700));
         try {confirmed = await checkStatus();} catch (_) {}
       }
-      if (!confirmed) throw Error('Delivery not confirmed');
+      if (!confirmed) throw Error('Acceptance not confirmed');
       formView.style.display = 'none';
       successView.style.display = 'block';
       successView.querySelector('h2').focus();
       form.reset();
+      pendingRequest = null;
     } catch (error) {
       showError(error.name === 'AbortError'
-        ? 'We could not confirm your request before the connection timed out. Please try again or speak with Ivan in the gym.'
-        : 'We could not confirm your request. Please check your connection and try again, or speak with Ivan in the gym.');
+        ? 'We could not confirm your request before the connection timed out. Your details are still here. Try again to check the same request, or speak with Ivan in the gym.'
+        : 'We could not confirm your request. Your details are still here. Try again to check the same request, or speak with Ivan in the gym.');
     } finally {
       sending = false;
       submit.disabled = false;
